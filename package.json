@@ -1,0 +1,24 @@
+{
+  "name": "pkms",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run index.ts",
+    "build": "bun build ./index.ts --compile --minify --outfile pkms",
+    "migrate": "bunx drizzle-kit generate --dialect sqlite --schema ./schema.ts && bun migrate.ts && bun seed.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "drizzle-kit": "^0.24.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "drizzle-orm": "^0.33.0",
+    "express": "^4.21.0"
+  }
+}

@@ -180,3 +180,6 @@ dist
 
 # API Testing
 /pkms-api
+
+# Database
+/db/migrations/*

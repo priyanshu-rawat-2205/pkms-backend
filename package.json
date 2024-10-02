@@ -4,8 +4,11 @@
   "type": "module",
   "scripts": {
     "start": "bun run index.ts",
-    "build": "bun build ./index.ts --compile --minify --outfile pkms",
-    "migrate": "bunx drizzle-kit generate --dialect sqlite --schema ./schema.ts && bun migrate.ts && bun seed.ts"
+    "build": "bun build ./index.ts --compile --minify --outfile ./bin/pkms",
+    "migrate": "rm sqlite.db && rm -r ./drizzle && drizzle-kit generate --dialect sqlite --schema ./schema.ts && bun migrate.ts && bun seed.ts",
+    "db:push": "drizzle-kit generate",
+    "db:migrate": "bun ./db/migrate.ts",
+    "db:seed": "bun ./db/seed.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

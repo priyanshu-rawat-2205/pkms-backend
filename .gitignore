@@ -175,5 +175,8 @@ dist
 .DS_Store
 
 #binary
-/pkms
+/bin
 /*.db
+
+# API Testing
+/pkms-api

@@ -3,7 +3,7 @@ import * as schema from "./schema";
 
 const timestamp = Date.now()
 
-await db.insert(schema.projects).values([
+await db.insert(schema.project).values([
     {
         title: "A Journal",
     },
@@ -12,7 +12,7 @@ await db.insert(schema.projects).values([
     },
 ]);
 
-await db.insert(schema.notes).values([
+await db.insert(schema.note).values([
     {
         title: "a simple note",
         project_id: 1

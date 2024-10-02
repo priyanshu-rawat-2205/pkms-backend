@@ -1,20 +1,28 @@
-# pkms
+# PKMS
+_welcome to the official pkms-backend repo. API documentations is coming soon_
 
-To install dependencies:
+### Requirements:
+    bun
+
+### Instructions to run locally:
 
 ```bash
+# install dependencies
 bun install
+
+# setup migrations
+bun db:push
+bun db:migrate
+
+# seed the database
+bun db:seed
+
+# run the application on port 3000
+bun start
 ```
 
-To run migrations:
+### Instructions to build:
+
 ```bash
-bun run migrate
+bun run build
 ```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.27. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.

@@ -1,7 +1,9 @@
 import { db } from "./db";
 import * as schema from "./schema";
 
-const timestamp = Date.now()
+
+//project
+await db.delete(schema.project);
 
 await db.insert(schema.project).values([
     {
@@ -12,11 +14,15 @@ await db.insert(schema.project).values([
     },
 ]);
 
+// note
+await db.delete(schema.note);
+
 await db.insert(schema.note).values([
     {
         title: "a simple note",
+        body: "hi i'm the body of the note",
         project_id: 1
     }
 ])
 
-console.log("seeding complete")
+console.log("seeding completed")

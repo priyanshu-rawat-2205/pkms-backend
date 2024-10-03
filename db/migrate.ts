@@ -4,3 +4,5 @@ import config from '../drizzle.config'
 
 
 await migrate(db, { migrationsFolder: config.out!});
+
+console.log("migration completed")

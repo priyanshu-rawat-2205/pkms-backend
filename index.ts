@@ -20,6 +20,7 @@ app.get("/", async (req, res) => {
 // Read (all)
 app.get("/project", async (req, res) => {
   try{
+
     const data = await db.select().from(schema.project);
     res.json(data)
   } catch (error: any) {
@@ -67,6 +68,27 @@ app.post("/project", async (req, res) => {
   }
 });
 
+
+// read (project notes)
+app.get("/project-note/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id)
+    const data = await db.query.project.findMany({
+      where: eq(schema.project.id, id),
+      with:{
+        note: {
+          where: eq(schema.note.project_id, id)
+        }
+      },
+    });
+
+    res.json(data)
+
+  } catch(error: any) {
+    res.status(500).json({error: error.message})
+  }
+})
+
 // Delete
 app.delete("/project/:id", async (req, res) => {
   try{
@@ -105,6 +127,38 @@ app.get("/note/:id", async (req, res) => {
     res.status(500).json({error: error.message});
   }
 });
+
+
+// create
+app.post("/note/:p_id/", async (req, res) => {
+  try {
+    const p_id = parseInt(req.params.p_id);
+    const { title, body } = req.body
+    const data = await db.insert(schema.note).values({
+      title: title,
+      body: body,
+      project_id: p_id
+    }).returning()
+    res.json(data)
+  } catch(error: any) {
+    res.json({error: error.message});
+  }
+})
+
+// update
+app.put("/note/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const {title, body} = req.body;
+    const data = await db.update(schema.note).set({
+      title: title,
+      body: body,
+    }).where(eq(schema.note.id, id)).returning();
+    res.json(data)
+  } catch(error: any) {
+    res.json({error: error.message});
+  }
+})
 
 // delete
 app.delete("/note/:id", async (req, res) => {

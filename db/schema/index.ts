@@ -1,2 +1,2 @@
-export { default as note } from "./note"
-export { default as project } from "./project"
+export { default as note, noteRelations } from "./note"
+export { default as project, projectRelations } from "./project"
